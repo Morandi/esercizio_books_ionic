@@ -9,22 +9,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <!-- <ion-picker> -->
+<ion-content fullscreen class="ion-padding">
+  <ion-button expand="block" (click)="mostraPickerLibri()">Seleziona libro</ion-button>
 
-  <!-- </ion-picker> -->
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.titolo}}
-      <div class="item-note" slot="end">
-        {{item.autore}}
-      </div>
+  <!-- <form *ngIf="isBookSelected()" onsubmit="updateBook(event)"> -->
+  <form *ngIf="isBookSelected()">
+    <ion-item>
+      <ion-label position="stacked">Titolo<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required [(ngModel)]="libroSelezionato.titolo" name="titolo" type="text" placeholder="Titolo"></ion-input>
     </ion-item>
-  </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
+    <ion-item>
+      <ion-label position="stacked">Genere<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required [(ngModel)]="libroSelezionato.genere" name="genere" type="text" placeholder="Genere"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Autore<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required [(ngModel)]="libroSelezionato.autore" name="autore" type="text" placeholder="Autore"></ion-input>
+    </ion-item>
+  
+    <div class="ion-padding" style="text-align: center;">
+      <!-- <ion-button type="submit" class="ion-no-margin" color="success">Aggiorna dati</ion-button> -->
+      <ion-button (click)="updateBook()" class="ion-no-margin" color="success">Aggiorna dati</ion-button>
     </div>
-  -->
+  </form>
 </ion-content>

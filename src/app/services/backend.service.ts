@@ -14,9 +14,12 @@ export class BackendService {
   }
 
   public save(libro) {
-    this.client.post('http://esercitazione.local/api/libri/aggiornaLibro', libro).subscribe((libro: any) => {
-      console.log(libro);
-    });
+    const headers = new HttpHeaders(
+      {
+        _method: 'PUT'
+      }
+    )
+    return this.client.post('http://esercitazione.local/api/libri/aggiornaLibro/' + libro.id, libro, { headers: headers });
   }
 
   public delete(id) {
