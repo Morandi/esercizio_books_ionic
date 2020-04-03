@@ -21,15 +21,13 @@ export class ListPage implements OnInit {
     'build'
   ];
   // public items: Array<{ title: string; note: string; icon: string }> = [];
-  public items:[];
+  public items: [];
   constructor(public backend: BackendService) {
 
-    this.backend.getLibri().subscribe((libri:any) => {
+    this.backend.getLibri().subscribe((libri: any) => {
       console.log(libri);
       this.items = libri;
     });
-
-    
 
     // for (let i = 1; i < 11; i++) {
     //   this.items.push({
@@ -40,11 +38,20 @@ export class ListPage implements OnInit {
     // }
   }
 
-  public delete(id){
+  public delete(id) {
     console.log(id);
 
-    this.backend.delete(id);
+    this.backend.delete(id).subscribe(
+      (response: any) => {
+        this.items = response
+      },
+      error => {
+        console.log('ERRORACCIO RITORNATO: \n\n\n' + error);
+        alert('Errore:' + error);
+      }
+    );
   }
+
   ngOnInit() {
   }
   // add back when alpha.4 is out

@@ -5,28 +5,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BackendService {
-  
-  constructor( private client:HttpClient) { 
+
+  constructor(private client: HttpClient) {
 
   }
   public getLibri() {
     return this.client.get('http://esercitazione.local/api/libri/elencoLibri');
   }
 
-  public save(libro){
-    this.client.post('http://esercitazione.local/api/libri/aggiornaLibro', libro).subscribe((libro:any) => {
+  public save(libro) {
+    this.client.post('http://esercitazione.local/api/libri/aggiornaLibro', libro).subscribe((libro: any) => {
       console.log(libro);
     });
   }
 
-  public delete(id){
-    let headers = new HttpHeaders();
-    headers.append('Access-Control-Allow-Origin', '*');
-    headers.append('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, DELETE, PUT');
-    // , {headers: headers}
-    
-    this.client.post('http://esercitazione.local/api/libri/eliminaLibro/', id, {headers}).subscribe(error => {
-      console.log(error);
-    });
+  public delete(id) {
+    const headers = new HttpHeaders(
+      {
+        _method: 'DELETE'
+      }
+    )
+    return this.client.post('http://esercitazione.local/api/libri/eliminaLibro/' + id, {}, { headers: headers });
   }
 }
