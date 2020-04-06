@@ -23,7 +23,7 @@ export class BackendService {
   }
 
   public create(libro) {
-    return this.client.post('http://esercitazione.local/api/libri/inserisciLibro/', libro);
+    return this.client.post('http://esercitazione.local/api/libri/inserisciLibro', libro);
   }
 
   public delete(id) {
