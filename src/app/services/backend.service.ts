@@ -22,6 +22,10 @@ export class BackendService {
     return this.client.post('http://esercitazione.local/api/libri/aggiornaLibro/' + libro.id, libro, { headers: headers });
   }
 
+  public create(libro) {
+    return this.client.post('http://esercitazione.local/api/libri/inserisciLibro/', libro);
+  }
+
   public delete(id) {
     const headers = new HttpHeaders(
       {

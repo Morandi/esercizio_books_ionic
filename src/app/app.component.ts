@@ -25,6 +25,11 @@ export class AppComponent {
       title: 'Update',
       url: '/update',
       icon: 'list'
+    },
+    {
+      title: 'Create',
+      url: '/create',
+      icon: 'list'
     }
   ];
 
